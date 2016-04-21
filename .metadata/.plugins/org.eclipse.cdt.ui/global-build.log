@@ -1,0 +1,30 @@
+17:14:09 **** Rebuild of configuration Debug for project Test ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+g++ -o Test.exe "src\\main.o" 
+c:/mingw/bin/../lib/gcc/mingw32/4.8.1/../../../libmingw32.a(main.o):(.text.startup+0xa7): undefined reference to `WinMain@16'
+collect2.exe: error: ld returned 1 exit status
+17:15:06 **** Incremental Build of configuration Debug for project Test ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:41:9: error: no matching function for call to 'realm::realm()'
+   realm r;
+         ^
+..\src\main.cpp:41:9: note: candidates are:
+..\src\main.cpp:19:1: note: realm::realm(std::string, std::vector<int>)
+ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
+ ^
+..\src\main.cpp:19:1: note:   candidate expects 2 arguments, 0 provided
+..\src\main.cpp:8:7: note: realm::realm(const realm&)
+ class realm
+       ^
+..\src\main.cpp:8:7: note:   candidate expects 1 argument, 0 provided
+17:15:43 **** Incremental Build of configuration Debug for project Test ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+g++ -o Test.exe "src\\main.o" 
+17:19:14 **** Rebuild of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+g++ -o Project.exe "src\\main.o" 
