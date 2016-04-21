@@ -1,7 +1,26 @@
 #include <iostream>
 #include <string>
+#include <cstd.lib>
 
 using namespace std;
+
+class realm
+{
+	public: 
+	string charm;
+	int magi[];
+
+	int gems;
+};
+
+class graph
+{
+	public:
+		
+	
+	
+	
+};
 
 int main()
 {
@@ -12,6 +31,7 @@ int main()
 	
 	for(int i = 0; i < numrealms; i++)
 	{
+		realm r;
 		cin >> charm;
 		cin >> nummagi;
 		
