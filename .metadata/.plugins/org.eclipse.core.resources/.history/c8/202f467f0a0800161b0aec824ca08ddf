@@ -37,24 +37,19 @@ int main()
 {
 	int numrealms, nummagi, power;
 	string charm, currcharm, destcharm;
-	vector <int> vec;
-	vector <realm> realms;
 
 	cin >> numrealms;
 
 	for(int i = 0; i < numrealms; i++)
 	{
-		realm r;
+		//realm r;
 		cin >> charm;
 		cin >> nummagi;
 
 		for(int j = 0; j < nummagi; i++)
 		{
 			cin >> power;
-			vec.push_back(power);
 		}
-		r.realm(charm,vec);
-		realms.push_back(r);
 	}
 
 	cin >> currcharm;

@@ -38,7 +38,6 @@ int main()
 	int numrealms, nummagi, power;
 	string charm, currcharm, destcharm;
 	vector <int> vec;
-	vector <realm> realms;
 
 	cin >> numrealms;
 
@@ -54,7 +53,6 @@ int main()
 			vec.push_back(power);
 		}
 		r.realm(charm,vec);
-		realms.push_back(r);
 	}
 
 	cin >> currcharm;
