@@ -26,21 +26,12 @@ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
 class graph
 {
 public:
-	graph(int v, vector<realm> realms);
-	void dist(realm u, realm v);
+
 private:
 	int vertices;
 	list<int> *adj;
-	vector<realm> realms;
+
 };
-
-graph::graph(int v, vector<realm> realms):vertices(v),realms(realms){
-
-}
-
-void graph::dist(realm u, realm v){
-
-}
 
 int main()
 {

@@ -44,7 +44,7 @@ void graph::dist(realm u, realm v){
 
 int main()
 {
-	int numrealms, nummagi, power;
+	int numrealms, nummagi, power, prevpower=0;
 	string charm, currcharm, destcharm;
 	vector <int> vec;
 	vector <realm> realms;
@@ -60,7 +60,10 @@ int main()
 		for(int j = 0; j < nummagi; i++)
 		{
 			cin >> power;
-			vec.push_back(power);
+			if(power>prevpower){
+				vec.push_back(power);
+			}
+			prevpower=power;
 		}
 		r.realm(charm,vec);
 		realms.push_back(r);

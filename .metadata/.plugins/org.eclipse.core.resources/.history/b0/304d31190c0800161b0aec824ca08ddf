@@ -38,10 +38,6 @@ graph::graph(int v, vector<realm> realms):vertices(v),realms(realms){
 
 }
 
-void graph::dist(realm u, realm v){
-
-}
-
 int main()
 {
 	int numrealms, nummagi, power;

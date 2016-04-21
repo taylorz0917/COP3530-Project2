@@ -27,7 +27,7 @@ class graph
 {
 public:
 	graph(int v, vector<realm> realms);
-	void dist(realm u, realm v);
+	dist(realm u, realm v);
 private:
 	int vertices;
 	list<int> *adj;
@@ -35,10 +35,6 @@ private:
 };
 
 graph::graph(int v, vector<realm> realms):vertices(v),realms(realms){
-
-}
-
-void graph::dist(realm u, realm v){
 
 }
 
