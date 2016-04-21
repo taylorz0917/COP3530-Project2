@@ -16,7 +16,9 @@ public:
 private:
 	string charm;
 	vector <int> magi;
-	vector <int> gems;
+	int gems;
+
+
 };
 
 struct edge
@@ -27,7 +29,7 @@ struct edge
 };
 
 realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
-	//LIS to get gems
+	gems=0;
 }
 
 
@@ -41,6 +43,7 @@ private:
 	int vertices;
 	list<edge> *adj;
 	vector<realm> realms;
+	vector<int> gems;
 };
 
 graph::graph(int v, vector<realm> realms):vertices(v),realms(realms){

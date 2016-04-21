@@ -16,7 +16,9 @@ public:
 private:
 	string charm;
 	vector <int> magi;
-	vector <int> gems;
+	int gems;
+
+
 };
 
 struct edge
@@ -27,7 +29,7 @@ struct edge
 };
 
 realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
-	//LIS to get gems
+	gems=0;
 }
 
 

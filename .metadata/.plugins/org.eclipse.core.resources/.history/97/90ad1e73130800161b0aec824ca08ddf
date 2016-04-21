@@ -27,7 +27,7 @@ struct edge
 };
 
 realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
-	//LIS to get gems
+	gems=0;
 }
 
 

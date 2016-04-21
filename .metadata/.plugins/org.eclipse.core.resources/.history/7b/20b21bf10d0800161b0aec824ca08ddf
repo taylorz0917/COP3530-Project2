@@ -6,7 +6,12 @@
 
 using namespace std;
 
-
+struct edge
+{
+	realm *from;
+	realm *to;
+	int weight;
+};
 
 class realm
 {
@@ -16,18 +21,11 @@ public:
 private:
 	string charm;
 	vector <int> magi;
-	vector <int> gems;
-};
-
-struct edge
-{
-	realm *from;
-	realm *to;
-	int weight;
+	int gems;
 };
 
 realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
-	//LIS to get gems
+	gems=0;
 }
 
 
@@ -39,18 +37,17 @@ public:
 	void dist(realm u, realm v);
 private:
 	int vertices;
-	list<edge> *adj;
+	list<int> *adj;
 	vector<realm> realms;
 };
 
 graph::graph(int v, vector<realm> realms):vertices(v),realms(realms){
-	this->adj = NULL;
+
 }
 
 void graph::dist(realm u, realm v){
 
 }
-
 
 int main()
 {
@@ -67,7 +64,7 @@ int main()
 		cin >> charm;
 		cin >> nummagi;
 
-		for(int j = 0; j < nummagi; j++)
+		for(int j = 0; j < nummagi; i++)
 		{
 			cin >> power;
 			vec.push_back(power);
