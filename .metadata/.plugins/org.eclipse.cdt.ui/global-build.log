@@ -28,3 +28,150 @@ g++ -o Test.exe "src\\main.o"
 Info: Internal Builder is used for build
 g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
 g++ -o Project.exe "src\\main.o" 
+19:08:35 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:67:9: error: no matching function for call to 'realm::realm()'
+   realm r;
+         ^
+..\src\main.cpp:67:9: note: candidates are:
+..\src\main.cpp:30:1: note: realm::realm(std::string, std::vector<int>)
+ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
+ ^
+..\src\main.cpp:30:1: note:   candidate expects 2 arguments, 0 provided
+..\src\main.cpp:11:7: note: realm::realm(const realm&)
+ class realm
+       ^
+..\src\main.cpp:11:7: note:   candidate expects 1 argument, 0 provided
+..\src\main.cpp:76:5: error: invalid use of 'realm::realm'
+   r.realm(charm,vec);
+     ^
+19:10:01 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:32: error: conversion from 'realm*' to non-scalar type 'realm' requested
+   realm r = new realm(charm,vec);
+                                ^
+19:13:11 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:9: error: no matching function for call to 'realm::realm()'
+   realm r;
+         ^
+..\src\main.cpp:75:9: note: candidates are:
+..\src\main.cpp:30:1: note: realm::realm(std::string, std::vector<int>)
+ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
+ ^
+..\src\main.cpp:30:1: note:   candidate expects 2 arguments, 0 provided
+..\src\main.cpp:11:7: note: realm::realm(const realm&)
+ class realm
+       ^
+..\src\main.cpp:11:7: note:   candidate expects 1 argument, 0 provided
+19:14:42 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:8: error: expected unqualified-id before '[' token
+   realm[i].realm(charm,vec);
+        ^
+19:15:01 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:13: error: invalid use of 'realm::realm'
+   realms[i].realm(charm,vec);
+             ^
+19:15:14 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:12: error: base operand of '->' has non-pointer type 'realm'
+   realms[i]->realm(charm,vec);
+            ^
+19:15:43 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:75:13: error: no match for 'operator=' (operand types are 'realm' and 'realm*')
+   realms[i] = new realm(charm,vec);
+             ^
+..\src\main.cpp:75:13: note: candidate is:
+..\src\main.cpp:11:7: note: realm& realm::operator=(const realm&)
+ class realm
+       ^
+..\src\main.cpp:11:7: note:   no known conversion for argument 1 from 'realm*' to 'const realm&'
+19:16:17 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+g++ -o Project.exe "src\\main.o" 
+19:33:10 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In constructor 'realm::realm(std::string, std::vector<int>)':
+..\src\main.cpp:25:6: warning: unused variable 'A' [-Wunused-variable]
+  int A[size];
+      ^
+..\src\main.cpp:26:6: warning: unused variable 'B' [-Wunused-variable]
+  int B[size+1];
+      ^
+g++ -o Project.exe "src\\main.o" 
+19:37:52 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In constructor 'realm::realm(std::string, std::vector<int>)':
+..\src\main.cpp:37:3: error: expected ';' before '}' token
+   }
+   ^
+..\src\main.cpp:26:6: warning: unused variable 'A' [-Wunused-variable]
+  int A[size];
+      ^
+..\src\main.cpp:27:6: warning: unused variable 'B' [-Wunused-variable]
+  int B[size+1];
+      ^
+19:38:05 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In constructor 'realm::realm(std::string, std::vector<int>)':
+..\src\main.cpp:26:6: warning: unused variable 'A' [-Wunused-variable]
+  int A[size];
+      ^
+..\src\main.cpp:27:6: warning: unused variable 'B' [-Wunused-variable]
+  int B[size+1];
+      ^
+..\src\main.cpp:30:6: warning: variable 'mid' set but not used [-Wunused-but-set-variable]
+  int mid;
+      ^
+g++ -o Project.exe "src\\main.o" 
+20:10:51 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In constructor 'realm::realm(std::string, std::vector<int>)':
+..\src\main.cpp:32:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i< magi.size(); i++)
+                              ^
+..\src\main.cpp:55:8: error: cannot convert 'std::vector<_Tp, _Alloc>::size<int, std::allocator<int> >' from type 'std::vector<int>::size_type (std::vector<int>::)()const {aka unsigned int (std::vector<int>::)()const}' to type 'int'
+  for(s = b.size, d = b.back(); s--; d = temp[d])
+        ^
+..\src\main.cpp:57:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i< b.size(); i++)
+                           ^
+20:11:46 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+..\src\main.cpp: In constructor 'realm::realm(std::string, std::vector<int>)':
+..\src\main.cpp:32:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i< magi.size(); i++)
+                              ^
+..\src\main.cpp:57:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i< b.size(); i++)
+                           ^
+g++ -o Project.exe "src\\main.o" 
+Info: Nothing to build for Project
+20:12:22 **** Incremental Build of configuration Debug for project Project ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\main.o" "..\\src\\main.cpp" 
+g++ -o Project.exe "src\\main.o" 
+Info: Nothing to build for Project

@@ -29,7 +29,7 @@ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
 
 	b.push_back(0);
 
-	for(unsigned int i = 0; i< magi.size(); i++)
+	for(int i = 0; i< magi.size(); i++)
 	{
 		if(magi[b.back()] < magi[i])
 		{
@@ -54,7 +54,7 @@ realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
 	}
 	for(s = b.size(), d = b.back(); s--; d = temp[d])
 			b[s] = d;
-	for(unsigned int i = 0; i< b.size(); i++)
+	for(int i = 0; i< b.size(); i++)
 	{
 		cout << b[i] << endl;
 	}

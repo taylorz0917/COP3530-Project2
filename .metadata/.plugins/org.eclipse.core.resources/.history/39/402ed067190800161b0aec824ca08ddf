@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 #include <list>
 #include <vector>
 #include <string>
@@ -22,43 +21,8 @@ private:
 };
 
 realm::realm(string charm, vector <int> magi):charm(charm),magi(magi){
-	vector<int> temp(magi.size()),b;
-	int s,d;
-
-	if(magi.empty()) return;
-
-	b.push_back(0);
-
-	for(unsigned int i = 0; i< magi.size(); i++)
-	{
-		if(magi[b.back()] < magi[i])
-		{
-			temp[i] = b.back();
-			b.push_back(i);
-			continue;
-		}
-		for(s = 0, d = b.size()-1; s<d;)
-		{
-			int c = (s + d)/2;
-			if(magi[b[c]] < magi[i])
-				s=c++;
-			else
-				d = c;
-		}
-		if (magi[i] < magi[b[s]])
-		{
-			if(s > 0)
-				temp[i] = b[s-1];
-			b[s] = i;
-		}
-	}
-	for(s = b.size(), d = b.back(); s--; d = temp[d])
-			b[s] = d;
-	for(unsigned int i = 0; i< b.size(); i++)
-	{
-		cout << b[i] << endl;
-	}
-		this->maxinc = b.size();
+	int size = magi.size();
+	int A[]
 }
 
 struct edge

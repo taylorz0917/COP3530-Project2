@@ -4605,3 +4605,18 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.cdt.core 1 0 2016-04-21 17:18:30.290
 !MESSAGE Indexed 'Project' (0 sources, 0 headers) in 0.001 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.ui 4 4 2016-04-21 20:04:29.104
+!MESSAGE Conflicting handlers for org.eclipse.linuxtools.tmf.ui.import: {org.eclipse.linuxtools.internal.tmf.ui.project.handlers.ImportTraceHandler} vs {org.eclipse.tracecompass.internal.tmf.ui.project.handlers.ImportTraceHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-04-21 20:04:29.129
+!MESSAGE Conflicting handlers for org.eclipse.linuxtools.tmf.ui.command.delete_suppl_files: {org.eclipse.linuxtools.internal.tmf.ui.project.handlers.DeleteTraceSupplementaryFilesHandler} vs {org.eclipse.tracecompass.internal.tmf.ui.project.handlers.DeleteTraceSupplementaryFilesHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-04-21 20:04:29.136
+!MESSAGE Conflicting handlers for org.eclipse.linuxtools.tmf.ui.command.exporttracepkg: {org.eclipse.tracecompass.internal.tmf.ui.project.wizards.tracepkg.importexport.ExportTracePackageHandler@2726c08d} vs {org.eclipse.linuxtools.internal.tmf.ui.project.wizards.tracepkg.importexport.ExportTracePackageHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-04-21 20:04:29.141
+!MESSAGE Conflicting handlers for org.eclipse.linuxtools.tmf.ui.command.managecustomparsers: {org.eclipse.tracecompass.internal.tmf.ui.commands.ManageCustomParsersCommandHandler@55da18a4} vs {org.eclipse.linuxtools.internal.tmf.ui.commands.ManageCustomParsersCommandHandler}
+
+!ENTRY org.eclipse.ui 4 4 2016-04-21 20:04:29.227
+!MESSAGE Conflicting handlers for org.eclipse.linuxtools.tmf.ui.openFile: {org.eclipse.linuxtools.internal.tmf.ui.commands.OpenFileHandler} vs {org.eclipse.tracecompass.internal.tmf.ui.commands.OpenFileHandler}
