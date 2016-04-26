@@ -13,11 +13,12 @@ class realm
 public:
 	realm(string charm, vector <int> magi);
 	string charm;
+	int maxinc;
 
 private:
 	vector <int> magi;
 	vector <int> gems;
-	int maxinc;
+
 };
 
 realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
@@ -57,7 +58,8 @@ realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
 
 	for (unsigned int i = 0; i< b.size(); i++)
 	{
-		cout << magi[b[i]] << endl;
+		gems.push_back(magi[b[i]]);
+		//cout << magi[b[i]] << endl;
 	}
 	this->maxinc = b.size();
 }
@@ -74,66 +76,79 @@ struct edge
 class graph
 {
 public:
-	graph(int v, vector<realm> realms);
+	graph(int v, vector<realm*> realms);
 	void addEdge(int dist, realm *s, realm *d);
-	int dist(string u, string v);
+	int dist(realm* u, realm* v);
 	//void addEdge(int dist, realm s, realm d);
 private:
 	int vertices;
 	list<edge> *adj;
-	vector<realm> realms;
+	vector<realm*> realms;
+	vector<list<edge> > lor;
 };
 
-graph::graph(int v, vector<realm> realms) :vertices(v), realms(realms) {
-	this->adj = NULL;
+graph::graph(int v, vector<realm*> realms) :vertices(v), realms(realms) {
+	for(int i = 0; i<realms.size(); i++){
+		adj = NULL;
+		for(int j = 0; j<realms.size(); j++){
+			int distance = dist(realms[i],realms[j]);
+			if(distance<=realms[i]->maxinc){
+				addEdge(distance,realms[i],realms[j]);
+			}
+		}
+		lor.push_back(*adj);
+		adj->clear();
+	}
+	for(int i = 0; i<realms.size();i++){
+		cout<<realms[i]->charm<<endl;
+		for (list<edge>::iterator it=lor[i].begin(); it != lor[i].end(); ++it){
+			cout<<*it<<" ";
+		}
+	}
 }
 
 void graph::addEdge(int dist, realm *s, realm *d)
 {
 	edge *e = new edge(s, d, dist);
+	adj->push_back(*e);
 	//cout << e->from << " " << e->to << " " << e->weight << endl; 
 }
 
-int dist(string u, string v)
+int graph::dist(realm* u, realm* v)
 {
-	int n = u.length();
-	int m = v.length();
+	string x = u->charm;
+	string y = v->charm;
 
-	//int matrix[n + 1][m + 1];
+	int n = x.length();
+	int m = y.length();
 
-	int *ary = new int[n*m];
+	int matrix[n+1][m+1];
 
-	// ary[i][j] is then rewritten as
-	//ary[i*n + j];
+	for(int i = 0; i<= n; i++){
+		for(int j = 0; j<=m; j++){
 
-
-	for (int i = 0; i <= n; i++) {
-		for (int j = 0; j <= m; j++) {
-
-			if (i == 0)
+			if(i == 0)
 			{
-				ary[i*n + j] = j;
+				matrix[i][j] = j;
 			}
-			else if (j == 0)
+			else if(j ==0)
 			{
-				ary[i*n + j] = i;
+				matrix[i][j] = i;
 			}
-			else if (u[i - 1] == v[j - 1])
+			else if( x[i-1] == y[j-1])
 			{
-				ary[i*n + j] = ary[(i - 1)*n + (j - 1)];
+				matrix[i][j] = matrix[i-1][j-1];
 			}
 			else
 			{
-				int min1 = min(ary[i*n + (j-1)] , ary[(i-1)*n + j]);
-				int min2 = min(ary[(i-1)*n + (j-1)] , ary[(i - 1)*n + j]);
-				min1 = min(min1, min2);
-				ary[i*n + j] = 1 + min1;
+			int min1 = min(matrix[i][j-1],matrix[i-1][j]);
+			int min2 = min(matrix[i-1][j-1],matrix[i-1][j]);
+			min1 = min(min1,min2);
+			matrix[i][j] = 1+ min1;
 			}
 		}
 	}
-	int result = ary[n*n + m];
-	delete[] ary;
-	return result;
+	return matrix[n][m];
 }
 
 int main()
@@ -143,7 +158,7 @@ int main()
 	vector <int> vec;
 	vector <realm*> realms;
 
-	cout << dist("florida", "flower") << endl;
+	//cout << dist("florida", "flower") << endl;
 	/*
 	cin >> numrealms;
 
