@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <cstdlib>
+#include <limits.h>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
 	int maxinc;
 	vector <int> magi;
 	vector <int> gems;
+	int gemsum=0;
 
 };
 
@@ -59,6 +61,7 @@ realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
 	{
 		gems.push_back(this->magi[b[i]]);
 		//cout << this->magi[b[i]] << endl;
+		gemsum=gemsum+magi[b[i]];
 	}
 	maxinc = b.size();
 	//cout<<charm<<" "<<maxinc;
@@ -81,8 +84,8 @@ public:
 	graph(vector<realm*> realms, string source, string destination);
 	void addEdge(int dist, realm *d, int index);
 	int dist(realm* u, realm* v);
-	void shortBell(string source, string destination, int idxS, int idxD);
-	//void addEdge(int dist, realm s, realm d);
+	void shortDji(int idxS, int idxD);
+	void addEdge(int dist, realm s, realm d);
 	vector<edge> adj;
 	vector<realm*> realms;
 	vector<vector<edge> > lor;
@@ -90,27 +93,147 @@ public:
 
 graph::graph(vector<realm*> realms, string source, string destination) :realms(realms) {
 	//cout<<endl;
+	int matrix[realms.size()][realms.size()];
 	int idxSource, idxDest;
 	for(int i = 0; i<realms.size(); i++){
 		if(realms[i]->charm == source)
 		{
 			idxSource = i;
+			//cout<<i;
 		}
 		if(realms[i]->charm == destination)
 		{
 			idxDest = i;
+			//cout<<i;
 		}
 		//cout<<realms[i]->charm<<" "<<realms[i]->maxinc;
 		for(int j = 0; j<realms.size(); j++){
+			matrix[i][j]=0;
 			int distance = dist(realms[i],realms[j]);
 			if(distance<=realms[i]->maxinc&& distance!=0){
-				addEdge(distance,realms[j],j);
+				//addEdge(distance,realms[j],j);
+				matrix[i][j]=distance;
 			}
 		}
-		lor.push_back(adj);
-		adj.clear();
+		//lor.push_back(adj);
+		//adj.clear();
 	}
-	shortBell(source, destination, idxSource, idxDest);
+
+	/*for(int i = 0 ; i<realms.size(); i++){
+		for(int j = 0; j<realms.size();j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<endl;
+	}*/
+
+	int n = realms.size();
+	int distance[n];
+	bool visited[n];
+	int previous[n];
+
+	for(int i = 0; i<n; i++){
+		distance[i] = INT_MAX;
+		visited[i] = false;
+		previous[i]=-1;
+	}
+
+	distance[idxSource]=0;
+
+	for(int i = 0; i < n-1; i++){
+		int min = INT_MAX;
+		int minindex;
+		for(int j = 0; j<n;j++){
+			if(visited[j]==false && distance[j]<=min){
+				min=distance[j], minindex=j;
+			}
+
+		}
+		int u=minindex;
+		visited[u]=true;
+		for(int j = 0; j<n;j++){
+				if(!visited[j]&&matrix[u][j]>0 && distance[u]!=INT_MAX && distance[u]+matrix[u][j]<distance[j]){
+					distance[j]= distance[u]+matrix[u][j];
+					previous[j]= u;
+				}
+		}
+	}
+
+	int x = 0;
+	int i = idxDest;
+	if(distance[i]==INT_MAX){
+		cout<<"IMPOSSIBLE"<<endl;
+	}
+	else{
+		cout<<distance[i]<<" ";
+		while(i!=idxSource){
+			i=previous[i];
+			x=x+realms[i]->gemsum;
+		}
+		cout<<x<<endl;
+	}
+
+
+
+	/*for(int i = 0; i<n; i++){
+		cout<<distance[i]<<" ";
+	}
+	cout<<endl;
+	for(int i = 0; i<n; i++){
+		cout<<previous[i]<<" ";
+	}*/
+
+	//-------------------------
+	n = realms.size();
+
+	for(int i = 0; i<n; i++){
+		distance[i] = INT_MAX;
+		visited[i] = false;
+		previous[i]=-1;
+	}
+
+	distance[idxDest]=0;
+
+	for(int i = 0; i < n-1; i++){
+		int min = INT_MAX;
+		int minindex;
+		for(int j = 0; j<n;j++){
+			if(visited[j]==false && distance[j]<=min){
+				min=distance[j], minindex=j;
+			}
+
+		}
+		int u=minindex;
+		visited[u]=true;
+		for(int j = 0; j<n;j++){
+				if(!visited[j]&&matrix[u][j] && distance[u]!=INT_MAX && distance[u]+matrix[u][j]<distance[j]){
+					distance[j]= distance[u]+matrix[u][j];
+					previous[j]=u;
+				}
+		}
+	}
+	int y = 0;
+	int j = idxSource;
+	if(distance[j]==INT_MAX){
+		cout<<"IMPOSSIBLE"<<endl;
+	}
+	else{
+		cout<<distance[j]<<" ";
+		while(j!=idxDest){
+			j=previous[j];
+			y=y+realms[j]->gemsum;
+		}
+		cout<<y<<endl;
+	}
+
+
+
+	/*for(int i = 0; i<realms.size();i++){
+		for(int j = 0; j<realms.size(); j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	//shortDji(idxSource, idxDest);
 	/*for(int i = 0; i<realms.size();i++){
 		int x=lor[i].size();
 		cout<<realms[i]->charm<<endl;
@@ -121,12 +244,11 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 	}*/
 }
 
-void graph::shortBell(string source, string destination, int idxS, int idxD){
+void graph::shortDji(int idxS, int idxD){
 
-	swap(realms[idxS], realms[0]);
+	/*swap(realms[idxS], realms[0]);
 	swap(lor[idxS], lor[0]);
 
-	cout << realms[0] <<endl;
 
 	int distance[realms.size()];
 	int previous[realms.size()];
@@ -148,7 +270,8 @@ void graph::shortBell(string source, string destination, int idxS, int idxD){
 				previous[j] = i;
 			}
 		}
-	}
+	}*/
+
 
 }
 
