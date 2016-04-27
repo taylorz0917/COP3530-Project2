@@ -17,7 +17,6 @@ public:
 	int maxinc;
 	vector <int> magi;
 	vector <int> gems;
-	int gemsum=0;
 
 };
 
@@ -36,7 +35,6 @@ realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
 			b.push_back(i);
 			continue;
 		}
-		//cout<<b.size()<<" ";
 		for (s = 0, d = b.size() - 1; s<d;)
 		{
 			int c = (s + d) / 2;
@@ -45,14 +43,12 @@ realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
 			else
 				d = c;
 		}
-		//cout<<b.size()<<" ";
 		if (this->magi[i] < this->magi[b[s]])
 		{
 			if (s > 0)
 				temp[i] = b[s - 1];
 			b[s] = i;
 		}
-		//cout<<b.size()<<" ";
 	}
 	for (s = b.size(), d = b.back(); s--; d = temp[d])
 		b[s] = d;
@@ -60,72 +56,42 @@ realm::realm(string charm, vector <int> magi) :charm(charm), magi(magi) {
 	for (unsigned int i = 0; i< b.size(); i++)
 	{
 		gems.push_back(this->magi[b[i]]);
-		//cout << this->magi[b[i]] << endl;
-		gemsum=gemsum+magi[b[i]];
 	}
 	maxinc = b.size();
-	//cout<<charm<<" "<<maxinc;
 	b.clear();
 	temp.clear();
 
 }
 
-struct edge
-{
-	realm *to;
-	int weight;
-	int index;
-	edge(realm *to, int weight, int index) :  to(to), weight(weight), index(index){}
-};
-
 class graph
 {
 public:
 	graph(vector<realm*> realms, string source, string destination);
-	void addEdge(int dist, realm *d, int index);
 	int dist(realm* u, realm* v);
 	void shortDji(int idxS, int idxD);
-	void addEdge(int dist, realm s, realm d);
-	vector<edge> adj;
 	vector<realm*> realms;
-	vector<vector<edge> > lor;
 };
 
 graph::graph(vector<realm*> realms, string source, string destination) :realms(realms) {
-	//cout<<endl;
 	int matrix[realms.size()][realms.size()];
 	int idxSource, idxDest;
 	for(int i = 0; i<realms.size(); i++){
 		if(realms[i]->charm == source)
 		{
 			idxSource = i;
-			//cout<<i;
 		}
 		if(realms[i]->charm == destination)
 		{
 			idxDest = i;
-			//cout<<i;
 		}
-		//cout<<realms[i]->charm<<" "<<realms[i]->maxinc;
 		for(int j = 0; j<realms.size(); j++){
 			matrix[i][j]=0;
 			int distance = dist(realms[i],realms[j]);
 			if(distance<=realms[i]->maxinc&& distance!=0){
-				//addEdge(distance,realms[j],j);
 				matrix[i][j]=distance;
 			}
 		}
-		//lor.push_back(adj);
-		//adj.clear();
 	}
-
-	/*for(int i = 0 ; i<realms.size(); i++){
-		for(int j = 0; j<realms.size();j++){
-			cout<<matrix[i][j]<<" ";
-		}
-		cout<<endl;
-	}*/
-
 	int n = realms.size();
 	int distance[n];
 	bool visited[n];
@@ -146,15 +112,14 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 			if(visited[j]==false && distance[j]<=min){
 				min=distance[j], minindex=j;
 			}
-
 		}
 		int u=minindex;
 		visited[u]=true;
 		for(int j = 0; j<n;j++){
-				if(!visited[j]&&matrix[u][j]>0 && distance[u]!=INT_MAX && distance[u]+matrix[u][j]<distance[j]){
-					distance[j]= distance[u]+matrix[u][j];
-					previous[j]= u;
-				}
+			if(!visited[j]&&matrix[u][j]>0 && distance[u]!=INT_MAX && distance[u]+matrix[u][j]<distance[j]){
+				distance[j]= distance[u]+matrix[u][j];
+				previous[j]= u;
+			}
 		}
 	}
 
@@ -177,17 +142,6 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 		cout<<x<<endl;
 	}
 
-
-
-	/*for(int i = 0; i<n; i++){
-		cout<<distance[i]<<" ";
-	}
-	cout<<endl;
-	for(int i = 0; i<n; i++){
-		cout<<previous[i]<<" ";
-	}*/
-
-	//-------------------------
 	n = realms.size();
 
 	for(int i = 0; i<n; i++){
@@ -234,61 +188,6 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 		cout<<y<<endl;
 	}
 
-
-
-	/*for(int i = 0; i<realms.size();i++){
-		for(int j = 0; j<realms.size(); j++){
-			cout<<matrix[i][j]<<" ";
-		}
-		cout<<endl;
-	}
-	//shortDji(idxSource, idxDest);
-	/*for(int i = 0; i<realms.size();i++){
-		int x=lor[i].size();
-		cout<<realms[i]->charm<<endl;
-		for(int j = 0; j<x; j++){
-			cout<<lor[i][j].to->charm<<" "<<lor[i][j].weight;
-		}
-		cout<<endl;
-	}*/
-}
-
-void graph::shortDji(int idxS, int idxD){
-
-	/*swap(realms[idxS], realms[0]);
-	swap(lor[idxS], lor[0]);
-
-
-	int distance[realms.size()];
-	int previous[realms.size()];
-
-	for(int i = 0; i < realms.size(); i++){
-		distance[i] = INFINITY;
-		previous[i] = NULL;
-	}
-
-	distance[idxS] = 0;
-
-	for(int i = 1; i < realms.size()-1; i++)
-	{
-		for(int j = 0; j < lor[i].size(); j++)
-		{
-			if(distance[i]+lor[i][j].weight<distance[j]){
-				distance[j] = distance[i] + lor[i][j].weight;
-				cout<< distance[j]<<" ";
-				previous[j] = i;
-			}
-		}
-	}*/
-
-
-}
-
-void graph::addEdge(int dist, realm *d, int index)
-{
-	edge *e = new edge(d, dist, index);
-	adj.push_back(*e);
-	//cout << e->from << " " << e->to << " " << e->weight << endl;
 }
 
 int graph::dist(realm* u, realm* v)
@@ -335,7 +234,6 @@ int main()
 	vector <int> vec;
 	vector <realm*> realms;
 
-	//cout << dist("florida", "flower") << endl;
 	cin >> numrealms;
 
 	for (int i = 0; i < numrealms; i++)
