@@ -160,14 +160,19 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 
 	int x = 0;
 	int i = idxDest;
+	int old;
 	if(distance[i]==INT_MAX){
 		cout<<"IMPOSSIBLE"<<endl;
 	}
 	else{
 		cout<<distance[i]<<" ";
 		while(i!=idxSource){
+			old=i;
 			i=previous[i];
-			x=x+realms[i]->gemsum;
+			for(int a = 0; a<dist(realms[previous[old]],realms[old]); a++){
+				x=x+realms[i]->gems[a];
+			}
+
 		}
 		cout<<x<<endl;
 	}
@@ -219,8 +224,12 @@ graph::graph(vector<realm*> realms, string source, string destination) :realms(r
 	else{
 		cout<<distance[j]<<" ";
 		while(j!=idxDest){
+			old=j;
 			j=previous[j];
-			y=y+realms[j]->gemsum;
+			for(int a = 0; a<dist(realms[previous[old]],realms[old]); a++){
+				y=y+realms[j]->gems[a];
+			}
+
 		}
 		cout<<y<<endl;
 	}
